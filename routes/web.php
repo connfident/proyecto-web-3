@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/registrar', [HomeController::class,'registrar'])->name('auth.regist
 
 Route::post('/login', [HomeController::class,'login'])->name('auth.login');
 Route::post('/registrar', [HomeController::class,'store'])->name('auth.store');
+Route::post('/artista/login',[UsuariosController::class,'autenticar'])->name('artista.login');
 
 Route::get('/artista/{cuenta}', [ArtistasController::class,'index'])->name('artistas.index');
 

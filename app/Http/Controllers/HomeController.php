@@ -7,6 +7,7 @@ use App\Http\Requests\CuentasRequest;
 use App\Models\Cuenta;
 use Illuminate\Support\Facades\Hash;
 use Gate;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -37,7 +38,9 @@ class HomeController extends Controller
         $cuenta->perfil_id = 2;
         $cuenta->save();
         return redirect()->route('index.welcome');
+
     }
+    
 
     // public function index($cuenta)
     // {

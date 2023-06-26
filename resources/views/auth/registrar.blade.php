@@ -5,7 +5,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
-            <!-- {{-- mensajes de error --}} -->
             @if ($errors->any())
             <div class="alert alert-warning">
                 @foreach ($errors->all() as $error)

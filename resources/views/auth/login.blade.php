@@ -5,10 +5,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
+            @if ($errors->any())
+            <div class="alert alert-warning">
+                @foreach ($errors->all() as $error)
+                {{ $error }}
+                @endforeach
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">Inicio de sesion</div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{route('artista.login')}}">
                         @csrf
 
                         <div class="row mb-3">
