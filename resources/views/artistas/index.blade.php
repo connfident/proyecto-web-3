@@ -21,16 +21,20 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulario -->
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('artistas.storage') }}" enctype="multipart/form-data">
                             @csrf
+                            <div class="mb-3">
+                                <label for="titulo" class="col-form-label">Titulo:</label> {{-- Vincular a base de datos --}}
+                                <textarea class="form-control" id="titulo"></textarea> {{-- Vincular a base de datos --}}
+                            </div>
                             <div class="form-group">
-                                <label for="photo">Selecciona una foto:</label>
+                                <label for="archivo">Selecciona una foto:</label>
                                 <br>
                                 <br>
-                                <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*" required>
+                                <input type="file" class="form-control-file" id="archivo" name="archivo" accept="image/*" required>
                             </div>
                             <hr>
-                            <button action="{{route('artistas.storage')}}" type="submit" class="btn btn-primary">Subir foto</button>
+                            <button type="submit" class="btn btn-primary">Subir foto</button>
                         </form>
                     </div>
                 </div>
