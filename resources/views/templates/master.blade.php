@@ -43,6 +43,7 @@
                         <a class="nav-link" href="{{route('artista.logout')}}">Cerrar sesion</a>
                     </li>
                     @endif
+                    
                 </ul>
             </div>
         </div>
