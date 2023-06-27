@@ -20,11 +20,11 @@ class ImagenesController extends Controller
     
         Storage::setVisibility($fileName, 'public');
     
-        $imagen->titulo = 'Hola'; // Vincular a base de datos
+        $imagen->titulo = 'Hola'; // Vincular a formulario
         $imagen->archivo = $fileName;
         $imagen->baneada = false;
-        $imagen->motivo_ban = 'Nada'; // Vincular a base de datos
-        $imagen->cuenta_user = 'soren123'; // Vincular a base de datos
+        $imagen->motivo_ban = 'Nada'; // Vincular a formulario
+        $imagen->cuenta_user = 'soren123'; // Vincular a formulario
         $imagen->save();
         return redirect()->route('index.welcome');
     }
