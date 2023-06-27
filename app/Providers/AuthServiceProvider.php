@@ -22,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('cuenta-login', function($cuenta){
-            return $cuenta->perfil_id == 2;
+            return $cuenta->perfil_id == 2 || $cuenta->perfil_id == 1 ;
         });
     }
 }

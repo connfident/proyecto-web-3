@@ -29,28 +29,21 @@
                     </li>
                     @endif
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item @if(Gate::allows('cuenta-login')) d-none @endif">
                         <a class="nav-link" href="{{route('auth.login')}}"">Iniciar sesion</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @if(Gate::allows('cuenta-login')) d-none @endif">
                         <a class="nav-link" href="{{route('auth.registrar')}}">Registrarse</a>
                     </li>
-                        
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('artista.logout')}}">
-                            <h6>Cerrar sesion</h6>
-                        </a>
-
-                        <form id="logout-form" action="" method="" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                    
+                    @if(Gate::allows('cuenta-login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('artista.logout')}}">Cerrar sesion</a>
+                    </li>
+                    @endif
+                </ul>
             </div>
         </div>
     </nav>
