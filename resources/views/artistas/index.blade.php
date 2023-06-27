@@ -21,16 +21,16 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulario -->
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="photo">Selecciona una foto:</label>
                                 <br>
                                 <br>
-                                <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
+                                <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*" required>
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-primary">Subir foto</button>
+                            <button action="{{route('artistas.storage')}}" type="submit" class="btn btn-primary">Subir foto</button>
                         </form>
                     </div>
                 </div>

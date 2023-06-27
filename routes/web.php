@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\CuentasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ImagenesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::post('/cuenta/login',[CuentasController::class,'autenticar'])->name('arti
 Route::get('/cuenta/logout',[CuentasController::class,'logout'])->name('artista.logout');
 
 Route::get('/artista/{cuenta}', [ArtistasController::class,'index'])->name('artistas.index');
+Route::post('/artista/enviar', [ImagenesController::class,'storage'])->name('artistas.storage');
 
 
 
