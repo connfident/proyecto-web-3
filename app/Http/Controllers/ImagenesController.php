@@ -20,12 +20,12 @@ class ImagenesController extends Controller
     
         Storage::setVisibility($fileName, 'public');
     
-        $imagen->titulo = 'Hola'; // Vincular a formulario
+        $imagen->titulo = 'Hola'; // Hay que vincular a formulario
         $imagen->archivo = $fileName;
         $imagen->baneada = false;
-        $imagen->motivo_ban = 'Nada'; // Vincular a formulario
-        $imagen->cuenta_user = 'soren123'; // Vincular a formulario
+        $imagen->motivo_ban = 'Nada'; // Hay que vincular a formulario
+        $imagen->cuenta_user = 'soren123'; // Hay que vincular a formulario
         $imagen->save();
-        return redirect()->route('index.welcome');
+        return redirect()->route('index.welcome'); // Tiene que retornar a vista de perfil 
     }
 }
