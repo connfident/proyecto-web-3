@@ -24,8 +24,8 @@
                         <form method="POST" action="{{ route('artistas.storage') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="titulo" class="col-form-label">Titulo:</label> {{-- Vincular a base de datos --}}
-                                <textarea class="form-control" id="titulo"></textarea> {{-- Vincular a base de datos --}}
+                                <label for="titulo" class="col-form-label">Titulo:</label> {{-- Vincular a base de datos, que use este titulo al subir la imagen --}}
+                                <textarea class="form-control" id="titulo"></textarea> {{-- Vincular a base de datos, que use este titulo al subir la imagen --}}
                             </div>
                             <div class="form-group">
                                 <label for="archivo">Selecciona una foto:</label>
