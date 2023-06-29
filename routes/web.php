@@ -18,6 +18,7 @@ use App\Http\Controllers\ImagenesController;
 |
 */
 Route::get('/', [HomeController::class,'hub'])->name('index.welcome');
+Route::get('/search', [HomeController::class,'search']);
 Route::get('/login', [HomeController::class,'login'])->name('auth.login');
 Route::get('/registrar', [HomeController::class,'registrar'])->name('auth.registrar');
 Route::post('/registrar', [HomeController::class,'store'])->name('auth.store');

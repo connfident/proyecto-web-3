@@ -56,22 +56,32 @@
         </div>
     </div>
     <hr>
-    @foreach
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Titulo</h5>
-                    <hr>
-                    <img src="{{ asset('images/huevo.jpeg') }}" class="card-img-top img-fluid" alt="">
-                    <hr>
-                    <button class="btn btn-primary">Editar foto</button>
-                    <button class="btn btn-danger">Borrar foto</button>
+
+    
+    @if (!empty($cuenta->imagen) && (is_array($cuenta->imagen) || is_object($cuenta->imagen)))
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach ($cuenta->imagen as $imagen)
+            <div class="col @if($imagen->baneada == 1) d-none @endif ">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$imagen->titulo}}</h5>
+                        <hr>
+                        <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
+                        <hr>
+                        <div class="row d-flex text-center">
+                            <div class="col">
+                                <button class="btn btn-primary">Editar foto</button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger">Borrar foto</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        
-    </div>
+    @endif
 </div>
 
 @endsection

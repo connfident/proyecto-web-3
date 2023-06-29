@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CuentasRequest;
 use App\Models\Cuenta;
+use App\Models\Imagen;
 use Illuminate\Support\Facades\Hash;
 use Gate;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,26 @@ class HomeController extends Controller
 {
     public function hub()
     {
-        return view('index.welcome');
+        $imagen = Imagen::all();
+        $cuenta = Cuenta::all();
+
+        return view('index.welcome', compact(['imagen', 'cuenta']));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;  
+        
+        $imagen = Imagen::where(function($query) use ($search){
+
+            $query->where('cuenta_user', 'like', "%$search%");
+        })
+        ->orWhereHas('cuenta', function($query) use ($search){
+            $query->where('user', 'like', "%$search%");
+        })
+        ->get();
+
+        return view('index.welcome', compact('imagen', 'search'));
     }
 
     public function login()
