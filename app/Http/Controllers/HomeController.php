@@ -26,10 +26,10 @@ class HomeController extends Controller
         
         $imagen = Imagen::where(function($query) use ($search){
 
-            $query->where('cuenta_user', 'like', "%$search%");
+            $query->where('cuenta_user', 'like', "$search");
         })
         ->orWhereHas('cuenta', function($query) use ($search){
-            $query->where('user', 'like', "%$search%");
+            $query->where('user', 'like', "$search");
         })
         ->get();
 
