@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\NullableType;
 
 return new class extends Migration
 {
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->string('titulo', 20);
             $table->string('archivo', 100);
             $table->boolean('baneada');
-            $table->text('motivo_ban');
+            $table->text('motivo_ban')->nullable();
             $table->string('cuenta_user');
             $table->foreign('cuenta_user')->references('user')->on('cuentas');
             $table->timestamps();

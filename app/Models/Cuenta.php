@@ -23,6 +23,6 @@ class Cuenta extends Authenticable
 
         public function imagen():HasMany
         {
-            return $this->hasMany(Imagen::class);
+            return $this->hasMany(Imagen::class)->orderByDesc('created_at');
         }
 }
