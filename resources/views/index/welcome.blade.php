@@ -13,7 +13,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 
@@ -29,6 +28,7 @@
                     <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-bottom img-fluid" alt="...">
                 </div>
             </div>
+            
             @endforeach
         </div>
     </div>
