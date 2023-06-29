@@ -6,11 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
             @if ($errors->any())
-            <div class="alert alert-warning">
-                @foreach ($errors->all() as $error)
-                {{ $error }}
-                @endforeach
-            </div>
+                <div class="alert alert-warning">
+                    <p>Error!</p>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <p>• {{ $error }}</p>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <div class="card">
                 <div class="card-header">Formulario de Registro</div>

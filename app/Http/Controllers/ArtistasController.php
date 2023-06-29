@@ -19,5 +19,9 @@ class ArtistasController extends Controller
         return view('artistas.index', compact('cuenta'));
     }
 
+    public function MostrarImagenes()
+    {
+        
+    }
     
 }

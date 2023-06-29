@@ -5,7 +5,21 @@
 <div class="container">
     <hr>
     <div class="text-center mt-4">
-        <h2>Usuario: {{Auth::user()->user}}</h2>
+        <div class="row-2">
+            <div class="col-md-6 offset-md-3">
+                @if ($errors->any())
+                <div class="alert alert-warning">
+                    <p>Error!</p>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <p>• {{ $error }}</p>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+        </div>
+        <h2>Usuario: {{ Auth::user()->user }}</h2>
         <div class="text-center mt-4">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
             <input id="file-input" type="file" style="display: none;">
@@ -24,8 +38,8 @@
                         <form method="POST" action="{{ route('artistas.storage') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="titulo" class="col-form-label">Titulo:</label> {{-- Vincular a base de datos, que use este titulo al subir la imagen --}}
-                                <textarea class="form-control" id="titulo"></textarea> {{-- Vincular a base de datos, que use este titulo al subir la imagen --}}
+                                <label for="titulo" class="col-form-label">Titulo:</label>
+                                <textarea class="form-control" id="titulo" name="titulo"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="archivo">Selecciona una foto:</label>
@@ -40,9 +54,9 @@
                 </div>
             </div>
         </div>
-        
     </div>
     <hr>
+    @foreach
     <div class="row mt-4">
         <div class="col-md-3">
             <div class="card">
@@ -56,45 +70,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Titulo</h5>
-                    <hr>
-                    <img src="{{ asset('images/auto.jpg') }}" class="card-img-top img-fluid" alt="">
-                    <hr>
-                    <button class="btn btn-primary">Editar foto</button>
-                    <button class="btn btn-danger">Borrar foto</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Titulo</h5>
-                    <hr>
-                    <img src="{{ asset('images/limo.jpeg') }}" class="card-img-top" alt="">
-                    <hr>
-                    <button class="btn btn-primary">Editar foto</button>
-                    <button class="btn btn-danger">Borrar foto</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Titulo</h5>
-                    <hr>
-                    <img src="{{ asset('images/lambo.jpg') }}" class="card-img-top" alt="">
-                    <hr>
-                    <button class="btn btn-primary">Editar foto</button>
-                    <button class="btn btn-danger">Borrar foto</button>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
-
-
 
 @endsection
