@@ -21,7 +21,7 @@ class ArtistasController extends Controller
 
     public function MostrarImagenes()
     {
-        
+        $user = Auth::user()->user;
+        $imagen = $user;
     }
-    
 }
