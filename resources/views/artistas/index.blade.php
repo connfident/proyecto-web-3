@@ -19,11 +19,11 @@
                 @endif
             </div>
         </div>
-        <h2>Usuario: {{ Auth::user()->user }}</h2>
+        <h2>Usuario: {{ $cuenta->user }}</h2>
         <div class="text-center mt-4">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
+            <button type="button" class="btn btn-success @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
             <input id="file-input" type="file" style="display: none;">
-            <button class="btn btn-primary btn-danger">Fotos Baneadas</button>
+            <a class="btn btn-primary btn-danger" href="{{route('artistas.indexban', $cuenta->user)}}">Fotos Baneadas</a>
         </div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,6 +54,7 @@
                 </div>
             </div>
         </div>
+        <a class="btn btn-dark mt-1" href="{{route('admin.artistaslista')}}" >Lista de artistas</a>
     </div>
     <hr>
 
@@ -69,12 +70,103 @@
                         <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
                         <hr>
                         <div class="row d-flex text-center">
+                            
+                            {{-- Editar Imagenes --}}
                             <div class="col">
-                                <button class="btn btn-primary">Editar foto</button>
+                                <form method="POST" >
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal{{$imagen->id}}">Editar</button>
+                                </form>
                             </div>
+                            {{-- Modal Confirmar Edicion --}}
+                            <div class="modal fade" id="editarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="editarModalLabel{{$imagen->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="{{route('artistas.update',$imagen->id)}}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="editarModalLabel{{$imagen->id}}">Edicion de foto</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="titulo" class="col-form-label">Titulo:</label>
+                                                    <textarea class="form-control" id="titulo" name="titulo"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-success">Confirmar Edición </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Borrar Imagenes --}}
                             <div class="col">
-                                <button class="btn btn-danger">Borrar foto</button>
+                                <form method="POST" >
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">Borrar</button>
+                                </form>
                             </div>
+                            {{-- Modal Confirmar borrado --}}
+                            <div class="modal fade" id="borrarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$imagen->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="{{route('artistas.destroy',$imagen->id)}}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="borrarModalLabel{{$imagen->id}}">Confirmación de Borrado</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Desea borrar la imagen titulada <span class="text-danger fw-bold">{{$imagen->titulo}}</span>?
+                                                <hr>
+                                                <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid"  alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">Borrar Imagen</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if(Auth::user()->perfil_id == 1) 
+                            <div class="col">
+                                <form method="POST" >
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">Banear</button>
+                                </form>
+                            </div>
+
+                            <div class="modal fade" id="banearModal{{$imagen->id}}" tabindex="-1" aria-labelledby="banearModalLabel{{$imagen->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="{{route('artistas.banear',$imagen->id)}}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="banearModalLabel{{$imagen->id}}">¡Está por banear una foto! ¿Está seguro?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="motivo_ban" class="col-form-label">Motivo de ban</label>
+                                                    <textarea class="form-control" id="motivo_ban" name="motivo_ban"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">Banear</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @endif
                         </div>
                     </div>
                 </div>

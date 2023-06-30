@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImagenesRequest;
 use App\Models\Imagen;
 use App\Models\Cuenta;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\NullableType;
+use Symfony\Component\Routing\Route;
 
 class ImagenesController extends Controller
 {
@@ -30,8 +32,41 @@ class ImagenesController extends Controller
       $imagen->save();
       
       $cuenta = Auth::user()->user;
-      // return $request -> archivo('archivo')->store('public/images')->redirect()->route('index.welcome');
-      return redirect()->route('artistas.index', compact('cuenta')); // Tiene que retornar a vista de perfil
+      
+      return redirect()->route('artistas.index', compact('cuenta')); 
 
   }
+
+    public function destroy(Imagen $imagen, Cuenta $cuenta){
+      
+      $cuenta->user = $imagen->cuenta_user;
+      $imagen->delete();
+      return redirect()->route('artistas.index', compact('cuenta'));
+    }
+
+    public function update(Request $request, Imagen $imagen){
+      $cuenta = Auth::user()->user;
+      $imagen->titulo = $request->titulo;
+      $imagen->save();
+
+      return redirect()->route('artistas.index', compact('cuenta'));
+
+    }
+
+    public function banear(Request $request, Imagen $imagen, Cuenta $cuenta){
+
+      if(Gate::denies('admin-login')){
+        return redirect()->route('index.welcome');
+      }
+
+      $cuenta->user = $imagen->cuenta_user;
+      $imagen->baneada = 1;
+      $imagen->motivo_ban = $request->motivo_ban;
+      $imagen->save();
+
+      return redirect()->route('artistas.index', compact('cuenta'));
+
+    }
+
+
 }

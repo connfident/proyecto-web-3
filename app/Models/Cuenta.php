@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cuenta extends Authenticable
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
         protected $table = 'cuentas';
         protected $primaryKey = 'user';
         protected $keyType = 'string';

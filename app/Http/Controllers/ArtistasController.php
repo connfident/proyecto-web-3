@@ -14,18 +14,30 @@ class ArtistasController extends Controller
 {
     public function index(Cuenta $cuenta)
     {
-        if(Gate::denies('cuenta-login')){
+        if(Gate::denies('cuenta-login') && Gate::denies('admin-login')){
+            return redirect()->route('index.welcome');
+        }
+
+        if($cuenta->perfil_id == 1){
             return redirect()->route('index.welcome');
         }
         
         return view('artistas.index', compact(['cuenta']));
     }
 
+    public function indexban(Cuenta $cuenta){
 
+        return view('artistas.indexban', compact('cuenta'));
+    }
 
-    public function MostrarImagenes()
+    public function destroy(Imagen $imagen){
+        $imagen->delete();
+        return redirect()->route('artistas.index');
+    }
+
+    /* public function MostrarImagenes()
     {
         $user = Auth::user()->user;
         $imagen = $user;
-    }
+    } */
 }

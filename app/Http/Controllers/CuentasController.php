@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CuentasRequest;
 use App\Models\Cuenta;
+use Illuminate\Support\Facades\Gate;
 
 class CuentasController extends Controller
 {
@@ -25,6 +26,14 @@ class CuentasController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('index.welcome');
+    }
+
+    public function destroy(Cuenta $cuenta){
+        if(Gate::denies('admin-login')){
+            return redirect()->route('index.welcome');
+        }
+        $cuenta->delete();
+        return redirect()->route('admin.artistaslista');
     }
 
 }
