@@ -22,6 +22,9 @@
         <div class="text-center mt-4">
             <a type="button" class="btn btn-success" href="{{ route('admin.artistaslista')}}">Ver Cuentas</a>
         </div>
+        <div class="text-center mt-4">
+            <a type="button" class="btn btn-success" href="{{ route('admin.perfiles')}}">Ver Perfiles</a>
+        </div>
     </div>  
 </div>
 

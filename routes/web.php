@@ -42,6 +42,8 @@ Route::put('/artista/{imagen}/desban', [ImagenesController::class,'desbanear'])-
 Route::post('/artista/enviar', [ImagenesController::class,'storage'])->name('artistas.storage');
 
 Route::get('/admin/{cuenta}', [AdminController::class,'index'])->name('admin.index');
+Route::get('/admin/lista/perfiles', [AdminController::class,'perfiles'])->name('admin.perfiles');
 Route::get('/admin/lista/artistas', [AdminController::class,'listarArtistas'])->name('admin.artistaslista');
+
 
 

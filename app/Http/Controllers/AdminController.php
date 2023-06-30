@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
+use App\Models\Perfil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -28,6 +29,15 @@ class AdminController extends Controller
         return view('admin.artistaslista', compact('cuenta'));
     }
 
+    public function perfiles(Perfil $perfil){
+
+        if(Gate::denies('admin-login')) {
+            return redirect()->route('index.welcome');
+        }
+        
+        $perfil = Perfil::all();
+        return view('admin.perfiles', compact('perfil'));
+    }
     
 
 }
