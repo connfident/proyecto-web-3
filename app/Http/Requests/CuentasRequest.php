@@ -24,8 +24,8 @@ class CuentasRequest extends FormRequest
         return [
             'user' => 'required|min:2|max:20',
             'password' => 'bail|required|min:6|max:100|same:password2',
-            'nombre' => 'required|min:2|max:20',
-            'apellido' => 'required|min:2|max:20',
+            'nombre' => 'required|alpha|min:2|max:20',
+            'apellido' => 'required|min:2|alpha|max:20',
         ];
     }
 
@@ -38,9 +38,11 @@ class CuentasRequest extends FormRequest
             'nombre.required' => 'Indique el nombre del usuario',
             'nombre.min' => 'El nombre debe tener entre 2 y 20 caracteres',
             'nombre.max' => 'El nombre debe tener entre 2 y 20 caracteres',
+            'nombre.alpha' => 'El nombre debe solo debe tener letras',
             'apellido.required' => 'Indique el apellido del usuario',
             'apellido.min' => 'El apellido debe tener entre 2 y 20 caracteres',
             'apellido.max' => 'El apellido debe tener entre 2 y 20 caracteres',
+            'apellido.alpha' => 'El apellido solo debe tener letras',
             'password.required' => 'Indique contraseña del usuario',
             'password.min' => 'La contraseña debe tener entre 6 y 100 caracteres',
             'password.max' => 'La contraseña debe tener entre 6 y 100 caracteres',

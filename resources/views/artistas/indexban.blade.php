@@ -42,11 +42,13 @@
                         <div class="row d-flex text-center">
                             
                             {{-- Borrar Imagenes --}}
+                            @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))
                             <div class="col">
                                 <form method="POST" >
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">Borrar</button>
                                 </form>
                             </div>
+                            @endif
                             {{-- Modal Confirmar borrado --}}
                             <div class="modal fade" id="borrarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$imagen->id}}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -100,10 +102,41 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @if(Auth::user()->perfil_id == 1) 
+                            <div class="col">
+                                <form method="POST" >
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$imagen->id}}">Desbanear</button>
+                                </form>
+                            </div>
+
+                            <div class="modal fade" id="desbanearModal{{$imagen->id}}" tabindex="-1" aria-labelledby="desbanearModalLabel{{$imagen->id}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="{{route('artistas.desbanear',$imagen->id)}}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="desbanearModalLabel{{$imagen->id}}">¡Está por desbanear una foto! ¿Está seguro?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">Desbanear</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @endif
+
                         </div>
                     </div>
                 </div>
             </div>
+
+            
             @endforeach
         </div>
     @endif

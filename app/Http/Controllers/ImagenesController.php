@@ -68,5 +68,20 @@ class ImagenesController extends Controller
 
     }
 
+    public function desbanear(Request $request, Imagen $imagen, Cuenta $cuenta){
+
+      if(Gate::denies('admin-login')){
+        return redirect()->route('index.welcome');
+      }
+
+      $cuenta->user = $imagen->cuenta_user;
+      $imagen->baneada = 0;
+      $imagen->motivo_ban = null;
+      $imagen->save();
+
+      return redirect()->route('artistas.indexban', compact('cuenta'));
+
+    }
+
 
 }

@@ -36,6 +36,7 @@ Route::delete('/artista/{imagen}', [ImagenesController::class,'destroy'])->name(
 Route::put('/artista/{imagen}', [ImagenesController::class,'update'])->name('artistas.update');
 
 Route::put('/artista/{imagen}/ban', [ImagenesController::class,'banear'])->name('artistas.banear');
+Route::put('/artista/{imagen}/desban', [ImagenesController::class,'desbanear'])->name('artistas.desbanear');
 
 
 Route::post('/artista/enviar', [ImagenesController::class,'storage'])->name('artistas.storage');

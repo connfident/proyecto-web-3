@@ -27,6 +27,10 @@ class ArtistasController extends Controller
 
     public function indexban(Cuenta $cuenta){
 
+        if((Auth::user()->perfil_id == 2 && Auth::user()->user != $cuenta->user)){
+            return redirect()->route('artistas.index', compact('cuenta'));
+        }
+
         return view('artistas.indexban', compact('cuenta'));
     }
 

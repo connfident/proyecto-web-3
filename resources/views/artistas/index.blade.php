@@ -20,11 +20,13 @@
             </div>
         </div>
         <h2>Usuario: {{ $cuenta->user }}</h2>
+        @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user) || Auth::user()->perfil_id == 1)
         <div class="text-center mt-4">
             <button type="button" class="btn btn-success @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
             <input id="file-input" type="file" style="display: none;">
             <a class="btn btn-primary btn-danger" href="{{route('artistas.indexban', $cuenta->user)}}">Fotos Baneadas</a>
         </div>
+        @endif
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -70,13 +72,14 @@
                         <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
                         <hr>
                         <div class="row d-flex text-center">
-                            
+                            @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))
                             {{-- Editar Imagenes --}}
                             <div class="col">
                                 <form method="POST" >
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal{{$imagen->id}}">Editar</button>
                                 </form>
                             </div>
+                            @endif
                             {{-- Modal Confirmar Edicion --}}
                             <div class="modal fade" id="editarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="editarModalLabel{{$imagen->id}}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -104,11 +107,13 @@
                             </div>
 
                             {{-- Borrar Imagenes --}}
+                            @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))
                             <div class="col">
                                 <form method="POST" >
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">Borrar</button>
                                 </form>
                             </div>
+                            @endif
                             {{-- Modal Confirmar borrado --}}
                             <div class="modal fade" id="borrarModal{{$imagen->id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$imagen->id}}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -137,7 +142,7 @@
                             @if(Auth::user()->perfil_id == 1) 
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">Banear</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">Banear</button>
                                 </form>
                             </div>
 

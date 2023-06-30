@@ -9,6 +9,7 @@ use App\Models\Imagen;
 use Illuminate\Support\Facades\Hash;
 use Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -51,6 +52,18 @@ class HomeController extends Controller
      */
     public function store(CuentasRequest $request)
     {
+        $request->validate([
+            'user' => [
+                'required',
+                Rule::unique('cuentas')->where(function ($query) {
+                    return $query->whereNull('deleted_at');
+                }),
+            ],
+        ], [
+            'user.unique' => 'El nombre de usuario ya está en uso.',
+        ]);
+    
+
         $cuenta = new Cuenta();
         $cuenta->user = $request->user;
         $cuenta->nombre = $request->nombre;

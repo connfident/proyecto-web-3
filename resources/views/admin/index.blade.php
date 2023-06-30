@@ -20,7 +20,7 @@
         </div>
         <h2>Administrador: {{ $cuenta->user }}</h2>
         <div class="text-center mt-4">
-            <a type="button" class="btn btn-success" href="{{ route('admin.artistaslista')}}">Ver Artistas</a>
+            <a type="button" class="btn btn-success" href="{{ route('admin.artistaslista')}}">Ver Cuentas</a>
         </div>
     </div>  
 </div>

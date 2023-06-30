@@ -19,6 +19,7 @@
     <div class="container d-flex text-center">
         <div class="row flex-row py-4">
             @foreach($imagen as $imagen)
+            @if($imagen->baneada == false)
             <div class="col-4 pb-2">
                 <div class="card h-100" style="width: 25rem;">
                     <div class="card-body">
@@ -28,6 +29,7 @@
                     <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-bottom img-fluid" alt="...">
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
