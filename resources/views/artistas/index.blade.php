@@ -19,15 +19,27 @@
                 @endif
             </div>
         </div>
-        <h2>Usuario: {{ $cuenta->user }}</h2>
-        <h4>{{$cuenta->nombre}} {{$cuenta->apellido}}</h4>
-        @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user) || Auth::user()->perfil_id == 1)
-        <div class="text-center mt-4">
-            <button type="button" class="btn btn-success @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
-            <input id="file-input" type="file" style="display: none;">
-            <a class="btn btn-primary btn-danger" href="{{route('artistas.indexban', $cuenta->user)}}">Fotos Baneadas</a>
+        <div class="container flex-row d-flex justify-content-center align-items-center">
+            <div class="p-2">
+                <h2>{{'@'.$cuenta->user }}</h2>
+            </div>
+            <div class="p-2">
+                <span class="fw-bold">
+                    {{$imagen = $cuenta->imagen->where('baneada',0)->count()}}
+                </span> 
+                Publicaciones
+            </div>
         </div>
-        @endif
+        <div class="container flex-row d-flex justify-content-center align-items-center">
+            <div class="col-12">
+                @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user) || Auth::user()->perfil_id == 1)
+                <a type="button" class="btn btn-sm btn-secondary @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</a>
+                <a class="btn btn-sm btn-primary btn-secondary" href="{{route('artistas.indexban', $cuenta->user)}}">Fotos Baneadas</a>
+                <a class="btn btn-sm btn-secondary" href="{{route('admin.artistaslista')}}" >Lista de artistas</a>
+                @endif
+            </div>
+        </div>
+        {{$cuenta->nombre}} {{$cuenta->apellido}}   
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -57,7 +69,6 @@
                 </div>
             </div>
         </div>
-        <a class="btn btn-dark mt-1" href="{{route('admin.artistaslista')}}" >Lista de artistas</a>
     </div>
     <hr>
 
@@ -70,7 +81,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$imagen->titulo}}</h5>
                         <hr>
-                        <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
+                        <img style="max-height: 10rem; min-height: 2rem;" src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
                         <hr>
                         <div class="row d-flex text-center">
                             @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))

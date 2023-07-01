@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ArtistasController extends Controller
 {
-    public function index(Cuenta $cuenta)
+    public function index(Cuenta $cuenta, Imagen $imagen)
     {
         if(Gate::denies('cuenta-login') && Gate::denies('admin-login')){
             return redirect()->route('index.welcome');
@@ -22,7 +22,7 @@ class ArtistasController extends Controller
             return redirect()->route('index.welcome');
         }
         
-        return view('artistas.index', compact(['cuenta']));
+        return view('artistas.index', compact(['cuenta', 'imagen']));
     }
 
     public function indexban(Cuenta $cuenta){

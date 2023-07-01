@@ -19,7 +19,17 @@
                 @endif
             </div>
         </div>
-        <h2>Usuario: {{ $cuenta->user }}</h2>
+        <div class="container flex-row d-flex justify-content-center align-items-center">
+            <div class="p-2">
+                <h2>{{'@'.$cuenta->user }}</h2>
+            </div>
+            <div class="p-2">
+                <span class="fw-bold">
+                    {{$imagen = $cuenta->imagen->where('baneada',1)->count()}}
+                </span> 
+                Publicaciones baneadas
+            </div>
+        </div>
         <div class="text-center mt-4">
             <input id="file-input" type="file" style="display: none;">
             <a class="btn btn-primary btn-secondary" href="{{route('artistas.index', $cuenta->user)}}">Volver</a>
@@ -36,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$imagen->titulo}}</h5>
                         <hr>
-                        <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
+                        <img style="max-height: 10rem; min-height: 2rem;" src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-top img-fluid" alt="">
                         <hr>
                         <div class="row d-flex text-center">
                             

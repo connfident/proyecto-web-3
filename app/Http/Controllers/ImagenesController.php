@@ -42,6 +42,11 @@ class ImagenesController extends Controller
 
     public function destroy(Imagen $imagen, Cuenta $cuenta, Request $request)
     {
+
+      if(Gate::denies('cuenta-login')){
+        return redirect()->route('index.welcome');
+      }
+
       $cuenta->user = $imagen->cuenta_user;
       $imagen->delete();
       return redirect()->route('artistas.index', compact('cuenta'));

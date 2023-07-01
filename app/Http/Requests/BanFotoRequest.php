@@ -30,6 +30,7 @@ class BanFotoRequest extends FormRequest
     {
         return [
             'motivo_ban.required' => 'Debe ingresar un motivo por el cuál está baneando la imagen',
+            'motivo_ban.min' => 'Especifique bien el motivo - Mínimo 5 cáracteres',
         ];
     }
 }
