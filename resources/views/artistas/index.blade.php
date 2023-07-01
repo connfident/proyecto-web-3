@@ -33,9 +33,19 @@
         <div class="container flex-row d-flex justify-content-center align-items-center">
             <div class="col-12">
                 @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user) || Auth::user()->perfil_id == 1)
-                <a type="button" class="btn btn-sm btn-secondary @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</a>
-                <a class="btn btn-sm btn-primary btn-secondary" href="{{route('artistas.indexban', $cuenta->user)}}">Fotos Baneadas</a>
-                <a class="btn btn-sm btn-secondary" href="{{route('admin.artistaslista')}}" >Lista de artistas</a>
+                <a type="button" class="btn btn-sm btn-secondary @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="material-symbols-outlined" style="vertical-align: -6px;">add_a_photo</i>
+                    Publicar Foto
+                </a>
+                <a class="btn btn-sm btn-primary btn-secondary" href="{{route('artistas.indexban', $cuenta->user)}}">
+                    <i class="material-symbols-outlined" style="vertical-align: -6px;">hide_image</i>
+                    Fotos Baneadas
+                </a>
+                <a class="btn btn-sm btn-secondary" href="{{route('admin.artistaslista')}}">
+                    <i class="material-symbols-outlined" style="vertical-align: -6px;">list</i>
+                    Lista de artistas
+                </a>
+                <hr>
                 @endif
             </div>
         </div>
@@ -63,7 +73,10 @@
                                 <input type="file" class="form-control-file" id="archivo" name="archivo" accept="image/*" required>
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-primary">Subir foto</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="material-symbols-outlined" style="vertical-align: -6px;">upload_file</i>
+                                Subir foto
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -88,7 +101,10 @@
                             {{-- Editar Imagenes --}}
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal{{$imagen->id}}">Editar</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined" style="vertical-align: -6px;">edit</i>
+                                        Editar
+                                    </button>
                                 </form>
                             </div>
                             @endif
@@ -100,7 +116,7 @@
                                             @method('PUT')
                                             @csrf
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="editarModalLabel{{$imagen->id}}">Edicion de foto</h1>
+                                                <h1 class="modal-title fs-5" id="editarModalLabel{{$imagen->id}}">Edición de foto</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -122,7 +138,10 @@
                             @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">Borrar</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined" style="vertical-align: -6px;">delete</i>
+                                        Borrar
+                                    </button>
                                 </form>
                             </div>
                             @endif
@@ -154,7 +173,10 @@
                             @if(Auth::user()->perfil_id == 1) 
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">Banear</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#banearModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined" style="vertical-align: -6px;">heart_minus</i>
+                                        Banear
+                                    </button>
                                 </form>
                             </div>
 

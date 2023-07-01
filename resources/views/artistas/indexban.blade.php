@@ -32,7 +32,10 @@
         </div>
         <div class="text-center mt-4">
             <input id="file-input" type="file" style="display: none;">
-            <a class="btn btn-primary btn-secondary" href="{{route('artistas.index', $cuenta->user)}}">Volver</a>
+            <a class="btn btn-primary btn-secondary" href="{{route('artistas.index', $cuenta->user)}}">
+                <i class="material-symbols-outlined" style="vertical-align: -6px;">arrow_back</i>
+                Volver
+            </a>
         </div>
     </div>
     <hr>
