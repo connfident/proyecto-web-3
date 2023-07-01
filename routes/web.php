@@ -43,7 +43,8 @@ Route::post('/artista/enviar', [ImagenesController::class,'storage'])->name('art
 
 Route::get('/admin/{cuenta}', [AdminController::class,'index'])->name('admin.index');
 Route::get('/admin/lista/perfiles', [AdminController::class,'perfiles'])->name('admin.perfiles');
-Route::get('/admin/lista/artistas', [AdminController::class,'listarArtistas'])->name('admin.artistaslista');
+Route::get('/lista/artistas', [AdminController::class,'listarArtistas'])->name('admin.artistaslista');
+Route::put('/admin/editar/{cuenta}', [AdminController::class,'update'])->name('cuentas.update');
 
 
 

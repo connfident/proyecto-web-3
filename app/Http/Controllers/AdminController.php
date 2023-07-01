@@ -7,6 +7,7 @@ use App\Models\Perfil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class AdminController extends Controller
 {
@@ -39,5 +40,12 @@ class AdminController extends Controller
         return view('admin.perfiles', compact('perfil'));
     }
     
-
+    public function update(Request $request, Cuenta $cuenta)
+    {
+        $cuenta->user;
+        $cuenta->nombre = $request->nombre; 
+        $cuenta->apellido = $request->apellido; 
+        $cuenta->save();
+        return redirect()->route('admin.artistaslista', compact('cuenta'));
+    }
 }

@@ -27,7 +27,7 @@ class ImagenesController extends Controller
       $imagen->titulo = $request->input('titulo');
       $imagen->archivo = $fileName;
       $imagen->baneada = false;
-      $imagen->motivo_ban = null; // Hay que vincular a formulario
+      $imagen->motivo_ban = null; 
       $imagen->cuenta_user = Auth::user()->user;
       $imagen->save();
       
@@ -37,18 +37,19 @@ class ImagenesController extends Controller
 
   }
 
-    public function destroy(Imagen $imagen, Cuenta $cuenta){
-      
+    public function destroy(Imagen $imagen, Cuenta $cuenta, Request $request)
+    {
       $cuenta->user = $imagen->cuenta_user;
       $imagen->delete();
       return redirect()->route('artistas.index', compact('cuenta'));
+      
     }
 
     public function update(Request $request, Imagen $imagen){
+
       $cuenta = Auth::user()->user;
       $imagen->titulo = $request->titulo;
       $imagen->save();
-
       return redirect()->route('artistas.index', compact('cuenta'));
 
     }

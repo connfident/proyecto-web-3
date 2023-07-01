@@ -24,7 +24,7 @@
                 <div class="card h-100" style="width: 25rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{$imagen->titulo}}</h5>
-                        <p> Subido por: <span style="color:red;">{{ $imagen->cuenta_user }}</span></p>
+                        <p> Subido por: <span style="color:red;">{{ '@'.$imagen->cuenta_user }}</span></p>
                     </div>
                     <img src="{{ asset('./archivo/' . $imagen->archivo) }}" class="card-img-bottom img-fluid" alt="...">
                 </div>
