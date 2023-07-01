@@ -57,7 +57,10 @@
                             @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user))
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">Borrar</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined d-flex align-items-center justify-content-center" style="vertical-align: -6px;">delete</i>
+                                        Borrar
+                                    </button>
                                 </form>
                             </div>
                             @endif
@@ -88,7 +91,10 @@
 
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#razonBanModal{{$imagen->id}}">Motivo ban</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#razonBanModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined d-flex align-items-center justify-content-center" style="vertical-align: -6px;">gavel</i>
+                                        Motivo ban
+                                    </button>
                                 </form>
                             </div>
 
@@ -118,7 +124,10 @@
                             @if(Auth::user()->perfil_id == 1) 
                             <div class="col">
                                 <form method="POST" >
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$imagen->id}}">Desbanear</button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$imagen->id}}">
+                                        <i class="material-symbols-outlined" style="vertical-align: -6px;">bookmark_remove</i>
+                                        Desbanear
+                                    </button>
                                 </form>
                             </div>
 
