@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditCuentaRequest;
 use App\Models\Cuenta;
 use App\Models\Perfil;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +41,12 @@ class AdminController extends Controller
         return view('admin.perfiles', compact('perfil'));
     }
     
-    public function update(Request $request, Cuenta $cuenta)
+    public function update(EditCuentaRequest $request, Cuenta $cuenta)
     {
+        if(Gate::denies('admin-login')){
+            return redirect()->route('index.welcome');
+          }
+
         $cuenta->user;
         $cuenta->nombre = $request->nombre; 
         $cuenta->apellido = $request->apellido; 

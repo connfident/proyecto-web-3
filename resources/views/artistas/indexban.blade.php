@@ -21,7 +21,6 @@
         </div>
         <h2>Usuario: {{ $cuenta->user }}</h2>
         <div class="text-center mt-4">
-            <button type="button" class="btn btn-success @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>
             <input id="file-input" type="file" style="display: none;">
             <a class="btn btn-primary btn-secondary" href="{{route('artistas.index', $cuenta->user)}}">Volver</a>
         </div>

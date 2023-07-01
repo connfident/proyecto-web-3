@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImagenesRequest;
+use App\Http\Requests\EditFotoRequest;
+use App\Http\Requests\BanFotoRequest;
 use App\Models\Imagen;
 use App\Models\Cuenta;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\NullableType;
 use Symfony\Component\Routing\Route;
@@ -45,7 +48,7 @@ class ImagenesController extends Controller
       
     }
 
-    public function update(Request $request, Imagen $imagen){
+    public function update(EditFotoRequest $request, Imagen $imagen){
 
       $cuenta = Auth::user()->user;
       $imagen->titulo = $request->titulo;
@@ -54,7 +57,7 @@ class ImagenesController extends Controller
 
     }
 
-    public function banear(Request $request, Imagen $imagen, Cuenta $cuenta){
+    public function banear(BanFotoRequest $request, Imagen $imagen, Cuenta $cuenta){
 
       if(Gate::denies('admin-login')){
         return redirect()->route('index.welcome');

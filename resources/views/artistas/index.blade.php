@@ -20,6 +20,7 @@
             </div>
         </div>
         <h2>Usuario: {{ $cuenta->user }}</h2>
+        <h4>{{$cuenta->nombre}} {{$cuenta->apellido}}</h4>
         @if((Auth::user()->perfil_id == 2 && Auth::user()->user == $cuenta->user) || Auth::user()->perfil_id == 1)
         <div class="text-center mt-4">
             <button type="button" class="btn btn-success @if(Auth::user()->perfil_id == 1) d-none @endif" data-bs-toggle="modal" data-bs-target="#exampleModal">Publicar Foto</button>

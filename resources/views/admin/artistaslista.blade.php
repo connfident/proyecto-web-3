@@ -6,7 +6,7 @@
 
 @section('contenido-principal')
 <div class="container min-vh-100">
-  <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
       <div class="col-12">
           <table class="table table-striped table-secondary">
               <thead>
@@ -70,12 +70,12 @@
                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                              ¿Desea borrar la imagen titulada <span class="text-danger fw-bold">{{$cuenta->user}}</span>?
+                                              ¿Desea borrar la cuenta llamada <span class="text-danger fw-bold">{{$cuenta->user}}</span>?
                                               <hr>
                                           </div>
                                           <div class="modal-footer">
                                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                              <button type="submit" class="btn btn-danger">Borrar Imagen</button>
+                                              <button type="submit" class="btn btn-danger">Borrar Cuenta</button>
                                           </div>
                                       </form>
                                   </div>
@@ -116,6 +116,20 @@
               </tbody>
           </table>
       </div>
-  </div>
+        <div class="row-2">
+            <div class="col-md-6 offset-md-3">
+                @if ($errors->any())
+                <div class="alert alert-warning">
+                    <p>Error!</p>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <p>• {{ $error }}</p>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
