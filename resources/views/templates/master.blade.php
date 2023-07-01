@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @yield('google-icon')
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Proyecto Web</title>
 </head>
@@ -26,27 +27,40 @@
                     <li class="nav-item">
                     @if(Gate::allows('cuenta-login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('artistas.index', Auth::user()->user)}}">Perfil</a>
+                        <a class="nav-link" href="{{route('artistas.index', Auth::user()->user)}}">
+                            <i class="material-symbols-outlined" style="vertical-align: -6px;">person</i>
+                            Perfil
+                        </a>
                     </li>
                     @endif
                     @if(Gate::allows('admin-login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.index', Auth::user()->user)}}">Panel de administración</a>
-                    </li>
+                    <a class="nav-link" href="{{route('admin.index', Auth::user()->user)}}">
+                        <i class="material-symbols-outlined" style="vertical-align: -6px;">admin_panel_settings</i>
+                        Panel de administración 
+                    </a>
                     @endif
                     </li>
 
                     <li class="nav-item @if(Gate::allows('cuenta-login') || Gate::allows('admin-login')) d-none @endif">
-                        <a class="nav-link" href="{{route('auth.login')}}"">Iniciar sesion</a>
+                        <a class="nav-link" href="{{route('auth.login')}}"">
+                            <i class="material-symbols-outlined" style="vertical-align: -6px;">login</i>
+                            Iniciar sesion
+                        </a>
                     </li>
 
                     <li class="nav-item @if(Gate::allows('cuenta-login') || Gate::allows('admin-login')) d-none @endif">
-                        <a class="nav-link" href="{{route('auth.registrar')}}">Registrarse</a>
+                        <a class="nav-link" href="{{route('auth.registrar')}}">
+                            <i class="material-symbols-outlined" style="vertical-align: -6px;">person_add</i>
+                            Registrarse
+                        </a>
                     </li>
-                    
+
                     @if(Gate::allows('cuenta-login') || Gate::allows('admin-login'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('artista.logout')}}">Cerrar sesion</a>
+                        <a class="nav-link" href="{{route('artista.logout')}}">
+                            <i class="material-symbols-outlined" style="vertical-align: -6px;">logout</i>
+                            Cerrar sesion
+                        </a>
                     </li>
                     @endif
                     

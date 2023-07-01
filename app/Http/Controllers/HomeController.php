@@ -7,7 +7,7 @@ use App\Http\Requests\CuentasRequest;
 use App\Models\Cuenta;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Hash;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -70,6 +70,8 @@ class HomeController extends Controller
         $cuenta->apellido = $request->apellido;
         $cuenta->password = Hash::make($request->password);
         $cuenta->perfil_id = 2;
+
+
         $cuenta->save();
         return redirect()->route('index.welcome');
 

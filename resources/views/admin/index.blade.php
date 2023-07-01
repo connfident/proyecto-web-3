@@ -20,10 +20,13 @@
         </div>
         <h2>Administrador: {{ $cuenta->user }}</h2>
         <div class="text-center mt-4">
-            <a type="button" class="btn btn-success" href="{{ route('admin.artistaslista')}}">Ver Cuentas</a>
+            <a type="button" class="btn btn-secondary" href="{{ route('admin.artistaslista')}}">Ver Cuentas</a>
         </div>
         <div class="text-center mt-4">
-            <a type="button" class="btn btn-success" href="{{ route('admin.perfiles')}}">Ver Perfiles</a>
+            <a type="button" class="btn btn-secondary" href="{{ route('admin.perfiles')}}">Ver Perfiles</a>
+        </div>
+        <div class="text-center mt-4">
+            <a type="button" class="btn btn-secondary" href="{{route('auth.registrar')}}">Registrar nuevo usuario</a>
         </div>
     </div>  
 </div>
